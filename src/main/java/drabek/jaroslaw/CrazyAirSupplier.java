@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 @Component
-public class ToughJetSupplier implements FlightSupplier{
+public class CrazyAirSupplier implements FlightSupplier{
 
-    public static final String TOUGH_JET_NAME = "ToughJet";
+    public static final String TOUGH_JET_NAME = "CrazyAir";
 
     @Override
     public Stream<Flight> getFlights(SearchCriteriaVO search) {
@@ -20,4 +20,5 @@ public class ToughJetSupplier implements FlightSupplier{
                         LocalDateTime.of(2017, 04, 8, 8, 50), LocalDateTime.of(2017, 04, 8, 9, 55))
         );
     }
+
 }
