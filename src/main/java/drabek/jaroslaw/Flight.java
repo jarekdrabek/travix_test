@@ -52,4 +52,6 @@ public class Flight {
     public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
+
+
 }

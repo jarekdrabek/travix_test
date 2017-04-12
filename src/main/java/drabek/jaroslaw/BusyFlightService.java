@@ -1,11 +1,11 @@
 package drabek.jaroslaw;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import java.util.stream.Stream;
 
-@Service
+@Controller
 public class BusyFlightService {
 
     @Autowired
@@ -14,7 +14,10 @@ public class BusyFlightService {
     @Autowired
     CrazyAirSupplier crazyAirSupplier;
 
-    public Stream<Flight> search(SearchCriteriaVO searchCriteriaVO){
-        return toughJetSupplier.getFlights(searchCriteriaVO);
+    public BusyFlightService() {
+    }
+
+    public Stream<Flight> search(SearchCriteria searchCriteria){
+        return toughJetSupplier.getFlights(searchCriteria);
     }
 }

@@ -3,32 +3,42 @@ package drabek.jaroslaw;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.stream.Stream;
 
+import static drabek.jaroslaw.FlightBuilder.flight;
+import static drabek.jaroslaw.SearchCriteriaBuilder.lookingForFlight;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doReturn;
 
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
+@RunWith(MockitoJUnitRunner.class)
 public class BusyFlightServiceTest extends AbstractJUnit4SpringContextTests {
 
-    @Autowired
+    @Mock
     private ToughJetSupplier toughJetSupplier;
 
-    @Autowired
+    @Mock
     private CrazyAirSupplier crazyAirSupplier;
 
-    @Test
-    public void should_return_empty_results_when_suppliers_return_empty_results() {
-        when(crazyAirSupplier.getFlights(any())).thenReturn(Stream.empty());
-        when(toughJetSupplier.getFlights(any())).thenReturn(Stream.empty());
+    @InjectMocks
+    private BusyFlightService underTest;
 
-        Assertions.assertThat(true).isTrue();
+    @Test
+    public void should_return_results_from_toughJetSupplier() {
+        doReturn(Stream.empty()).when(crazyAirSupplier).getFlights(any());
+
+        doReturn(Stream.of(
+                flight().from("KRK").to("FUE").create()
+        )).when(toughJetSupplier).getFlights(any());
+
+        Stream<Flight> searchResults = underTest.search(lookingForFlight().from("KRK").create());
+        Assertions.assertThat(searchResults.count()).isEqualTo(1);
     }
+
+
 }
