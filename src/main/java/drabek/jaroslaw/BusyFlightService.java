@@ -9,15 +9,12 @@ import java.util.stream.Stream;
 public class BusyFlightService {
 
     @Autowired
-    ToughJetSupplier toughJetSupplier;
+    ToughJetSupplierSearch toughJetSupplierSearch;
 
     @Autowired
-    CrazyAirSupplier crazyAirSupplier;
-
-    public BusyFlightService() {
-    }
+    CrazyAirSupplierSearch crazyAirSupplierSearch;
 
     public Stream<Flight> search(SearchCriteria searchCriteria){
-        return Stream.concat(toughJetSupplier.getFlights(searchCriteria), crazyAirSupplier.getFlights(searchCriteria));
+        return Stream.concat(toughJetSupplierSearch.getFlights(searchCriteria), crazyAirSupplierSearch.getFlights(searchCriteria));
     }
 }

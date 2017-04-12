@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Stream;
 
 @Component
-public class CrazyAirSupplier implements FlightSupplier{
+public class CrazyAirSupplierSearch implements FlightSupplier{
 
     public static final String TOUGH_JET_NAME = "CrazyAir";
 

@@ -22,20 +22,20 @@ import static org.mockito.Mockito.doReturn;
 public class BusyFlightServiceTest extends AbstractJUnit4SpringContextTests {
 
     @Mock
-    private ToughJetSupplier toughJetSupplier;
+    private ToughJetSupplierSearch toughJetSupplierSearch;
 
     @Mock
-    private CrazyAirSupplier crazyAirSupplier;
+    private CrazyAirSupplierSearch crazyAirSupplierSearch;
 
     @InjectMocks
     private BusyFlightService underTest;
 
     @Test
     public void should_return_results_from_toughJet_supplier() {
-        doReturn(Stream.empty()).when(crazyAirSupplier).getFlights(any());
+        doReturn(Stream.empty()).when(crazyAirSupplierSearch).getFlights(any());
         doReturn(Stream.of(
                 flight().from("KRK").to("FUE").create()
-        )).when(toughJetSupplier).getFlights(any());
+        )).when(toughJetSupplierSearch).getFlights(any());
 
         List<Flight> searchResults = underTest.search(lookingForFlight().from("KRK").create()).collect(Collectors.toList());
 
@@ -47,14 +47,12 @@ public class BusyFlightServiceTest extends AbstractJUnit4SpringContextTests {
     public void should_return_results_from_crazyAir_supplier() {
         doReturn(Stream.of(
                 flight().from("BER").to("STD").create()
-        )).when(crazyAirSupplier).getFlights(any());
-        doReturn(Stream.empty()).when(toughJetSupplier).getFlights(any());
+        )).when(crazyAirSupplierSearch).getFlights(any());
+        doReturn(Stream.empty()).when(toughJetSupplierSearch).getFlights(any());
 
         List<Flight> searchResults = underTest.search(lookingForFlight().from("BER").create()).collect(Collectors.toList());
 
         Assertions.assertThat(searchResults).contains(flight().from("BER").to("STD").create());
         Assertions.assertThat(searchResults.size()).isEqualTo(1);
     }
-
-
 }
