@@ -11,6 +11,9 @@ public class CrazyAirResponseDTO {
     private LocalDateTime departureDate;
     private LocalDateTime arrivalDate;
 
+    public CrazyAirResponseDTO() {
+    }
+
     public CrazyAirResponseDTO(
             String airline,
             String price,

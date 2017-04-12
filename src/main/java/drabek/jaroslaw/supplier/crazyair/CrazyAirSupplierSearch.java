@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 @Component
 public class CrazyAirSupplierSearch implements FlightSupplierSearch {
 
+    public static final String SUPPLIER_NAME = "Crazy Air";
+
     @Autowired
     private CrazyAirClient crazyAirClient;
 

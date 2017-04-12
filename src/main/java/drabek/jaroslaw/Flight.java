@@ -14,6 +14,9 @@ public class Flight {
     LocalDateTime departureDate;
     LocalDateTime arrivalDate;
 
+    public Flight() {
+    }
+
     public Flight(String airline,
                   String supplier,
                   BigDecimal fare,
