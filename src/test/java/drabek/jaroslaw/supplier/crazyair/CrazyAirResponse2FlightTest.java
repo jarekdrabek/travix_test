@@ -1,7 +1,7 @@
 package drabek.jaroslaw.supplier.crazyair;
 
 import drabek.jaroslaw.Flight;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

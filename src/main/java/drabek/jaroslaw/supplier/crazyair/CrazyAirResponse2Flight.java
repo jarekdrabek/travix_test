@@ -12,7 +12,7 @@ public class CrazyAirResponse2Flight implements DTO2FlightConverter<CrazyAirResp
     public Flight fromDTO(CrazyAirResponseDTO dto) {
         return new Flight(
                 dto.getAirline(),
-                CrazyAirSupplier.SUPPLIER_NAME,
+                CrazyAirClient.SUPPLIER_NAME,
                 new BigDecimal(dto.getPrice()),
                 dto.getDepartureAirportCode(),
                 dto.getDestinationAirportCode(),

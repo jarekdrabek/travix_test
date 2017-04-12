@@ -6,14 +6,13 @@ import drabek.jaroslaw.supplier.FlightSupplierSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 @Component
 public class CrazyAirSupplierSearch implements FlightSupplierSearch {
 
     @Autowired
-    private CrazyAirSupplier crazyAirSupplier;
+    private CrazyAirClient crazyAirClient;
 
     @Autowired
     private SearchCriteria2CrazyAirRequest searchCriteriaConverter;
@@ -23,7 +22,7 @@ public class CrazyAirSupplierSearch implements FlightSupplierSearch {
 
     @Override
     public Stream<Flight> search(SearchCriteria search) {
-        return crazyAirSupplier.getFlights(searchCriteriaConverter.toDTO(search)).stream()
+        return crazyAirClient.getFlights(searchCriteriaConverter.toDTO(search)).stream()
                 .map(dto -> crazyAirResponse2Flight.fromDTO(dto));
     }
 
