@@ -10,14 +10,14 @@ public class SearchCriteria {
     private Optional<String> origin;
     private Optional<String> destination;
     private Optional<LocalDate> departureDate;
-    private Optional<LocalDate> returnDateDate;
+    private Optional<LocalDate> returnDate;
     private int numberOfPassangers = 1;
 
-    public SearchCriteria(Optional<String> origin, Optional<String> destination, Optional<LocalDate> departureDate, Optional<LocalDate> returnDateDate, int numberOfPassangers) {
+    public SearchCriteria(Optional<String> origin, Optional<String> destination, Optional<LocalDate> departureDate, Optional<LocalDate> returnDate, int numberOfPassangers) {
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
-        this.returnDateDate = returnDateDate;
+        this.returnDate = returnDate;
         this.numberOfPassangers = numberOfPassangers;
     }
 
@@ -33,8 +33,8 @@ public class SearchCriteria {
         return departureDate;
     }
 
-    public Optional<LocalDate> getReturnDateDate() {
-        return returnDateDate;
+    public Optional<LocalDate> getReturnDate() {
+        return returnDate;
     }
 
     public int getNumberOfPassangers() {
@@ -50,12 +50,12 @@ public class SearchCriteria {
                 Objects.equal(origin, that.origin) &&
                 Objects.equal(destination, that.destination) &&
                 Objects.equal(departureDate, that.departureDate) &&
-                Objects.equal(returnDateDate, that.returnDateDate);
+                Objects.equal(returnDate, that.returnDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(origin, destination, departureDate, returnDateDate, numberOfPassangers);
+        return Objects.hashCode(origin, destination, departureDate, returnDate, numberOfPassangers);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class SearchCriteria {
         sb.append("origin=").append(origin);
         sb.append(", destination=").append(destination);
         sb.append(", departureDate=").append(departureDate);
-        sb.append(", returnDateDate=").append(returnDateDate);
+        sb.append(", returnDate=").append(returnDate);
         sb.append(", numberOfPassangers=").append(numberOfPassangers);
         sb.append('}');
         return sb.toString();

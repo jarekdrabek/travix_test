@@ -14,8 +14,12 @@ public class CrazyAirSupplierSearchSearch implements FlightSupplierSearch {
     @Autowired
     private CrazyAirSupplier crazyAirSupplier;
 
+    @Autowired
+    private SearchCriteria2CrazyAirRequest searchCriteriaConverter;
+
     @Override
     public Stream<Flight> getFlights(SearchCriteria search) {
+        CrazyAirRequestDTO crazyAirRequestDTO = searchCriteriaConverter.toDTO(search);
         return Stream.of();
     }
 
