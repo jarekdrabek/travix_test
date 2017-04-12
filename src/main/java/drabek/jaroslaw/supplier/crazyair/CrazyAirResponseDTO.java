@@ -1,22 +1,24 @@
 package drabek.jaroslaw.supplier.crazyair;
 
+import java.time.LocalDateTime;
+
 public class CrazyAirResponseDTO {
     private String airline;
-    private int price;
+    private String price;
     private String cabinclass;
     private String departureAirportCode;
     private String destinationAirportCode;
-    private String departureDate;
-    private String arrivalDate;
+    private LocalDateTime departureDate;
+    private LocalDateTime arrivalDate;
 
     public CrazyAirResponseDTO(
             String airline,
-            int price,
+            String price,
             String cabinclass,
             String departureAirportCode,
             String destinationAirportCode,
-            String departureDate,
-            String arrivalDate
+            LocalDateTime departureDate,
+            LocalDateTime arrivalDate
     ) {
         this.airline = airline;
         this.price = price;
@@ -31,7 +33,7 @@ public class CrazyAirResponseDTO {
         return airline;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -47,11 +49,11 @@ public class CrazyAirResponseDTO {
         return destinationAirportCode;
     }
 
-    public String getDepartureDate() {
+    public LocalDateTime getDepartureDate() {
         return departureDate;
     }
 
-    public String getArrivalDate() {
+    public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
 }
