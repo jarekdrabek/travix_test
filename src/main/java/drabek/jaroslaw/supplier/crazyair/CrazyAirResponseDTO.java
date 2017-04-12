@@ -1,26 +1,22 @@
 package drabek.jaroslaw.supplier.crazyair;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class CrazyAirResponseDTO {
-    String airline;
-    int price;
-    String cabinclass;
-    String departureAirportCode;
-    String destinationAirportCode;
-    String departureDate;
-    String arrivalDate;
+    private String airline;
+    private int price;
+    private String cabinclass;
+    private String departureAirportCode;
+    private String destinationAirportCode;
+    private String departureDate;
+    private String arrivalDate;
 
-    @JsonCreator
     public CrazyAirResponseDTO(
-            @JsonProperty("airline") String airline,
-            @JsonProperty("price") int price,
-            @JsonProperty("cabinclass") String cabinclass,
-            @JsonProperty("departureAirportCode") String departureAirportCode,
-            @JsonProperty("destinationAirportCode") String destinationAirportCode,
-            @JsonProperty("departureDate") String departureDate,
-            @JsonProperty("arrivalDate") String arrivalDate
+            String airline,
+            int price,
+            String cabinclass,
+            String departureAirportCode,
+            String destinationAirportCode,
+            String departureDate,
+            String arrivalDate
     ) {
         this.airline = airline;
         this.price = price;

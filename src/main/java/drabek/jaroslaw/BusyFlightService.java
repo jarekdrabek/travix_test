@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 public class BusyFlightService {
 
     @Autowired
-    ToughJetSupplierSearchSearch toughJetSupplierSearch;
+    private ToughJetSupplierSearchSearch toughJetSupplierSearch;
 
     @Autowired
-    CrazyAirSupplierSearchSearch crazyAirSupplierSearch;
+    private CrazyAirSupplierSearchSearch crazyAirSupplierSearch;
 
     public Stream<Flight> search(SearchCriteria searchCriteria){
         return Stream.concat(
