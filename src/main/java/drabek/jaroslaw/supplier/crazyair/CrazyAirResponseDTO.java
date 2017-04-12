@@ -1,4 +1,4 @@
-package drabek.jaroslaw.externals;
+package drabek.jaroslaw.supplier.crazyair;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
