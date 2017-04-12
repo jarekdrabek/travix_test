@@ -6,5 +6,5 @@ import drabek.jaroslaw.SearchCriteria;
 import java.util.stream.Stream;
 
 public interface FlightSupplierSearch {
-    Stream<Flight> getFlights(SearchCriteria search);
+    Stream<Flight> search(SearchCriteria search);
 }

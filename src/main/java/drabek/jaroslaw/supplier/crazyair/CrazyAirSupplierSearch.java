@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Component
-public class CrazyAirSupplierSearchSearch implements FlightSupplierSearch {
+public class CrazyAirSupplierSearch implements FlightSupplierSearch {
 
     @Autowired
     private CrazyAirSupplier crazyAirSupplier;
@@ -22,10 +22,9 @@ public class CrazyAirSupplierSearchSearch implements FlightSupplierSearch {
     private CrazyAirResponse2Flight crazyAirResponse2Flight;
 
     @Override
-    public Stream<Flight> getFlights(SearchCriteria search) {
-        CrazyAirRequestDTO crazyAirRequestDTO = searchCriteriaConverter.toDTO(search);
-        List<CrazyAirResponseDTO> responses = crazyAirSupplier.getFlights(crazyAirRequestDTO);
-        return null;
+    public Stream<Flight> search(SearchCriteria search) {
+        return crazyAirSupplier.getFlights(searchCriteriaConverter.toDTO(search)).stream()
+                .map(dto -> crazyAirResponse2Flight.fromDTO(dto));
     }
 
 }

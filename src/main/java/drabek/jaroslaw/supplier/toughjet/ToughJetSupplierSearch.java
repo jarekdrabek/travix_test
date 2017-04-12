@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Stream;
 
 @Component
-public class ToughJetSupplierSearchSearch implements FlightSupplierSearch {
+public class ToughJetSupplierSearch implements FlightSupplierSearch {
 
     @Autowired
     private ToughJetSupplier toughJetSupplier;
 
     @Override
-    public Stream<Flight> getFlights(SearchCriteria search) {
+    public Stream<Flight> search(SearchCriteria search) {
         return Stream.empty();
     }
 }

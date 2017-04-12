@@ -1,7 +1,7 @@
 package drabek.jaroslaw;
 
-import drabek.jaroslaw.supplier.crazyair.CrazyAirSupplierSearchSearch;
-import drabek.jaroslaw.supplier.toughjet.ToughJetSupplierSearchSearch;
+import drabek.jaroslaw.supplier.crazyair.CrazyAirSupplierSearch;
+import drabek.jaroslaw.supplier.toughjet.ToughJetSupplierSearch;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,11 +12,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static drabek.jaroslaw.FlightBuilder.flight;
 import static drabek.jaroslaw.SearchCriteriaBuilder.lookingForFlight;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
@@ -24,13 +21,13 @@ import static org.mockito.Mockito.verify;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class BusyFlightServiceTest extends AbstractJUnit4SpringContextTests {
+public class BusyFlightServiceTest {
 
     @Mock
-    private ToughJetSupplierSearchSearch toughJetSupplierSearch;
+    private ToughJetSupplierSearch toughJetSupplierSearch;
 
     @Mock
-    private CrazyAirSupplierSearchSearch crazyAirSupplierSearch;
+    private CrazyAirSupplierSearch crazyAirSupplierSearch;
 
     @Captor
     private ArgumentCaptor<SearchCriteria> crazyAirSearchArgumentCaptor;
@@ -44,12 +41,12 @@ public class BusyFlightServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void should_search_flights_in_toughJet_supplier_search() {
         //given
-        doReturn(Stream.empty()).when(crazyAirSupplierSearch).getFlights(any());
-        doReturn(Stream.empty()).when(toughJetSupplierSearch).getFlights(any());
+        doReturn(Stream.empty()).when(crazyAirSupplierSearch).search(any());
+        doReturn(Stream.empty()).when(toughJetSupplierSearch).search(any());
         //when
         underTest.search(lookingForFlight().from("BER").create());
         //then
-        verify(toughJetSupplierSearch).getFlights(toughJetSearchArgumentCaptor.capture());
+        verify(toughJetSupplierSearch).search(toughJetSearchArgumentCaptor.capture());
         Assertions.assertThat(
                 toughJetSearchArgumentCaptor.getValue()
         ).isEqualTo(
@@ -60,12 +57,12 @@ public class BusyFlightServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void should_search_flights_in_crazyAir_supplier_search() {
         //given
-        doReturn(Stream.empty()).when(crazyAirSupplierSearch).getFlights(any());
-        doReturn(Stream.empty()).when(toughJetSupplierSearch).getFlights(any());
+        doReturn(Stream.empty()).when(crazyAirSupplierSearch).search(any());
+        doReturn(Stream.empty()).when(toughJetSupplierSearch).search(any());
         //when
         underTest.search(lookingForFlight().from("STD").create());
         //then
-        verify(crazyAirSupplierSearch).getFlights(crazyAirSearchArgumentCaptor.capture());
+        verify(crazyAirSupplierSearch).search(crazyAirSearchArgumentCaptor.capture());
         Assertions.assertThat(
                 crazyAirSearchArgumentCaptor.getValue()
         ).isEqualTo(

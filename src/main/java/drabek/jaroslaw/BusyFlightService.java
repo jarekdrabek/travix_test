@@ -1,7 +1,7 @@
 package drabek.jaroslaw;
 
-import drabek.jaroslaw.supplier.crazyair.CrazyAirSupplierSearchSearch;
-import drabek.jaroslaw.supplier.toughjet.ToughJetSupplierSearchSearch;
+import drabek.jaroslaw.supplier.crazyair.CrazyAirSupplierSearch;
+import drabek.jaroslaw.supplier.toughjet.ToughJetSupplierSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -11,15 +11,15 @@ import java.util.stream.Stream;
 public class BusyFlightService {
 
     @Autowired
-    private ToughJetSupplierSearchSearch toughJetSupplierSearch;
+    private ToughJetSupplierSearch toughJetSupplierSearch;
 
     @Autowired
-    private CrazyAirSupplierSearchSearch crazyAirSupplierSearch;
+    private CrazyAirSupplierSearch crazyAirSupplierSearch;
 
     public Stream<Flight> search(SearchCriteria searchCriteria){
         return Stream.concat(
-                toughJetSupplierSearch.getFlights(searchCriteria),
-                crazyAirSupplierSearch.getFlights(searchCriteria)
+                toughJetSupplierSearch.search(searchCriteria),
+                crazyAirSupplierSearch.search(searchCriteria)
         );
     }
 }
