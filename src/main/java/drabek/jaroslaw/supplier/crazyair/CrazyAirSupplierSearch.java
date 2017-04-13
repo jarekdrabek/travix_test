@@ -1,8 +1,8 @@
-package drabek.jaroslaw.supplier;
+package drabek.jaroslaw.supplier.crazyair;
 
 import drabek.jaroslaw.Flight;
 import drabek.jaroslaw.SearchCriteria;
-import drabek.jaroslaw.supplier.toughjet.SearchCriteria2MultiValueMap;
+import drabek.jaroslaw.supplier.FlightSupplierSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,9 +24,7 @@ public class CrazyAirSupplierSearch implements FlightSupplierSearch {
 
     @Override
     public Stream<Flight> search(SearchCriteria search) {
-//        return crazyAirClient.getFlights(searchCriteriaConverter.toMap(search)).stream()
-//                .map(dto -> crazyAirResponse2Flight.fromDTO(dto));
-        return null;
+        return crazyAirClient.getFlights(searchCriteriaConverter.toMap(search)).stream().map(dto -> crazyAirResponse2Flight.fromDTO(dto));
     }
 
 }

@@ -1,4 +1,4 @@
-package drabek.jaroslaw.supplier.toughjet;
+package drabek.jaroslaw.supplier.crazyair;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

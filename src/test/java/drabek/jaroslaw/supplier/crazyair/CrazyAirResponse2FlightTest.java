@@ -1,8 +1,6 @@
-package drabek.jaroslaw.supplier.crazyjet;
+package drabek.jaroslaw.supplier.crazyair;
 
 import drabek.jaroslaw.Flight;
-import drabek.jaroslaw.supplier.CrazyAirResponse2Flight;
-import drabek.jaroslaw.supplier.CrazyAirResponseDTO;
 import org.junit.Test;
 
 import java.math.BigDecimal;

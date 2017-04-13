@@ -1,9 +1,8 @@
-package drabek.jaroslaw.supplier.crazyjet;
+package drabek.jaroslaw.supplier.crazyair;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import drabek.jaroslaw.SearchCriteria;
-import drabek.jaroslaw.supplier.toughjet.SearchCriteria2MultiValueMap;
 import org.junit.Test;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;

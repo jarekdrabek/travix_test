@@ -1,4 +1,4 @@
-package drabek.jaroslaw.supplier;
+package drabek.jaroslaw.supplier.crazyair;
 
 import java.time.LocalDateTime;
 

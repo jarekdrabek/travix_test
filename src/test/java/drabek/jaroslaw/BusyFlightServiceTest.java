@@ -1,6 +1,6 @@
 package drabek.jaroslaw;
 
-import drabek.jaroslaw.supplier.CrazyAirSupplierSearch;
+import drabek.jaroslaw.supplier.crazyair.CrazyAirSupplierSearch;
 import drabek.jaroslaw.supplier.toughjet.ToughJetSupplierSearch;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

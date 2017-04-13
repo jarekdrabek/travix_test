@@ -1,10 +1,11 @@
-package drabek.jaroslaw.supplier;
+package drabek.jaroslaw.supplier.crazyair;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,22 +20,14 @@ public class CrazyAirClient {
         this.restTemplate = restTemplate;
     }
 
-    public List<CrazyAirResponseDTO> getFlights(MultiValueMap<String,String> parameters) {
-        String uri = UriComponentsBuilder
+    public List<CrazyAirResponseDTO> getFlights(MultiValueMap<String,String> requestParameters) {
+        URI uri = UriComponentsBuilder
                 .fromHttpUrl("https://www.crazyflight.com/flights")
-                .queryParams(parameters)
-                .toUriString();
+                .queryParams(requestParameters)
+                .build().encode().toUri();
 
         return asList(restTemplate.getForObject(uri, CrazyAirResponseDTO[].class));
-    }
-
-
-    public static void main(String[] args) {
-        String uri = UriComponentsBuilder.fromHttpUrl("https://www.crazyflight.com/flights")
-                .queryParam("origin", Optional.empty())
-                .queryParam("destination", Optional.of("WAR")).toUriString();
-
-        System.out.println(uri);
+//        return asList(restTemplate.exchange(uri, CrazyAirResponseDTO[].class));
     }
 
 }
