@@ -1,4 +1,4 @@
-package drabek.jaroslaw.supplier.crazyair;
+package drabek.jaroslaw.supplier;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;

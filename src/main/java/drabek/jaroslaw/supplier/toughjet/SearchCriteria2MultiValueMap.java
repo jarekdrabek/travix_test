@@ -1,11 +1,10 @@
-package drabek.jaroslaw.supplier.crazyair;
+package drabek.jaroslaw.supplier.toughjet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Maps;
 import drabek.jaroslaw.SearchCriteria;
-import drabek.jaroslaw.SearchCriteriaBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -31,7 +30,7 @@ public class SearchCriteria2MultiValueMap {
         searchCriteria.getOrigin().ifPresent(value -> mapToReturn.put("origin", newArrayList(value)));
         searchCriteria.getDestination().ifPresent(value -> mapToReturn.put("destination", newArrayList(value)));
         searchCriteria.getDepartureDate().ifPresent(value -> mapToReturn.put("departureDate", newArrayList(convertLocalDateToISO8601String(value))));
-        searchCriteria.getDepartureDate().ifPresent(value -> mapToReturn.put("returnDate", newArrayList(convertLocalDateToISO8601String(value))));
+        searchCriteria.getReturnDate().ifPresent(value -> mapToReturn.put("returnDate", newArrayList(convertLocalDateToISO8601String(value))));
         mapToReturn.put("numberOfPassengers", newArrayList(String.valueOf(searchCriteria.getNumberOfPassengers())));
         return CollectionUtils.toMultiValueMap(mapToReturn);
     }

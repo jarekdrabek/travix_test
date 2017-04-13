@@ -1,4 +1,4 @@
-package drabek.jaroslaw.supplier.crazyair;
+package drabek.jaroslaw.supplier;
 
 import com.google.common.base.Objects;
 

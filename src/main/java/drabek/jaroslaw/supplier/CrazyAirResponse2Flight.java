@@ -1,7 +1,6 @@
-package drabek.jaroslaw.supplier.crazyair;
+package drabek.jaroslaw.supplier;
 
 import drabek.jaroslaw.Flight;
-import drabek.jaroslaw.supplier.DTO2FlightConverter;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

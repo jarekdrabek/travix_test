@@ -1,6 +1,6 @@
 package drabek.jaroslaw;
 
-import drabek.jaroslaw.supplier.crazyair.CrazyAirSupplierSearch;
+import drabek.jaroslaw.supplier.CrazyAirSupplierSearch;
 import drabek.jaroslaw.supplier.toughjet.ToughJetSupplierSearch;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -10,7 +10,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import java.util.stream.Stream;
 

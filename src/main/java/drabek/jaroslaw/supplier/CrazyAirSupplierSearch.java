@@ -1,8 +1,8 @@
-package drabek.jaroslaw.supplier.crazyair;
+package drabek.jaroslaw.supplier;
 
 import drabek.jaroslaw.Flight;
 import drabek.jaroslaw.SearchCriteria;
-import drabek.jaroslaw.supplier.FlightSupplierSearch;
+import drabek.jaroslaw.supplier.toughjet.SearchCriteria2MultiValueMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

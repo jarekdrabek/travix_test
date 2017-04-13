@@ -1,8 +1,9 @@
-package drabek.jaroslaw.supplier.crazyair;
+package drabek.jaroslaw.supplier.crazyjet;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import drabek.jaroslaw.SearchCriteria;
+import drabek.jaroslaw.supplier.toughjet.SearchCriteria2MultiValueMap;
 import org.junit.Test;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
@@ -26,7 +27,16 @@ public class SearchCriteria2MultiValueMapTest {
                 Optional.of(LocalDate.of(2017, 4, 15)),
                 1
         );
+        HashMap<String, List<String>> expectedMap = Maps.newHashMap();
+        expectedMap.put("origin",Lists.newArrayList("KRK"));
+        expectedMap.put("destination",Lists.newArrayList("STD"));
+        expectedMap.put("departureDate",Lists.newArrayList("\"2017-04-11\""));
+        expectedMap.put("returnDate",Lists.newArrayList("\"2017-04-15\""));
+        expectedMap.put("numberOfPassengers",Lists.newArrayList("1"));
         //when
+        MultiValueMap<String, String> converted = new SearchCriteria2MultiValueMap().toMap(toBeConverted);
+        //then
+        assertThat(converted).isEqualTo(CollectionUtils.toMultiValueMap(expectedMap));
     }
 
     @Test
@@ -43,11 +53,9 @@ public class SearchCriteria2MultiValueMapTest {
         expectedMap.put("origin",Lists.newArrayList("KRK"));
         expectedMap.put("destination",Lists.newArrayList("STD"));
         expectedMap.put("numberOfPassengers",Lists.newArrayList("1"));
-
         //when
         MultiValueMap<String, String> converted = new SearchCriteria2MultiValueMap().toMap(toBeConverted);
         //then
-
         assertThat(converted).isEqualTo(CollectionUtils.toMultiValueMap(expectedMap));
     }
 

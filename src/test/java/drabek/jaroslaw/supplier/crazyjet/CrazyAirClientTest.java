@@ -1,11 +1,11 @@
-package drabek.jaroslaw.supplier.crazyair;
+package drabek.jaroslaw.supplier.crazyjet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
-import drabek.jaroslaw.Flight;
-import drabek.jaroslaw.FlightBuilder;
+import drabek.jaroslaw.supplier.CrazyAirClient;
+import drabek.jaroslaw.supplier.CrazyAirResponseDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
@@ -14,11 +14,9 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static drabek.jaroslaw.FlightBuilder.flight;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;

@@ -1,6 +1,6 @@
 package drabek.jaroslaw;
 
-import drabek.jaroslaw.supplier.crazyair.CrazyAirSupplierSearch;
+import drabek.jaroslaw.supplier.CrazyAirSupplierSearch;
 import drabek.jaroslaw.supplier.toughjet.ToughJetSupplierSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
