@@ -11,14 +11,14 @@ public class SearchCriteria {
     private Optional<String> destination;
     private Optional<LocalDate> departureDate;
     private Optional<LocalDate> returnDate;
-    private int numberOfPassangers = 1;
+    private int numberOfPassengers = 1;
 
-    public SearchCriteria(Optional<String> origin, Optional<String> destination, Optional<LocalDate> departureDate, Optional<LocalDate> returnDate, int numberOfPassangers) {
+    public SearchCriteria(Optional<String> origin, Optional<String> destination, Optional<LocalDate> departureDate, Optional<LocalDate> returnDate, int numberOfPassengers) {
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
         this.returnDate = returnDate;
-        this.numberOfPassangers = numberOfPassangers;
+        this.numberOfPassengers = numberOfPassengers;
     }
 
     public Optional<String> getOrigin() {
@@ -37,8 +37,8 @@ public class SearchCriteria {
         return returnDate;
     }
 
-    public int getNumberOfPassangers() {
-        return numberOfPassangers;
+    public int getNumberOfPassengers() {
+        return numberOfPassengers;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class SearchCriteria {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SearchCriteria that = (SearchCriteria) o;
-        return numberOfPassangers == that.numberOfPassangers &&
+        return numberOfPassengers == that.numberOfPassengers &&
                 Objects.equal(origin, that.origin) &&
                 Objects.equal(destination, that.destination) &&
                 Objects.equal(departureDate, that.departureDate) &&
@@ -55,7 +55,7 @@ public class SearchCriteria {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(origin, destination, departureDate, returnDate, numberOfPassangers);
+        return Objects.hashCode(origin, destination, departureDate, returnDate, numberOfPassengers);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class SearchCriteria {
         sb.append(", destination=").append(destination);
         sb.append(", departureDate=").append(departureDate);
         sb.append(", returnDate=").append(returnDate);
-        sb.append(", numberOfPassangers=").append(numberOfPassangers);
+        sb.append(", numberOfPassengers=").append(numberOfPassengers);
         sb.append('}');
         return sb.toString();
     }

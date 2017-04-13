@@ -17,15 +17,16 @@ public class CrazyAirSupplierSearch implements FlightSupplierSearch {
     private CrazyAirClient crazyAirClient;
 
     @Autowired
-    private SearchCriteria2CrazyAirRequest searchCriteriaConverter;
+    private SearchCriteria2MultiValueMap searchCriteriaConverter;
 
     @Autowired
     private CrazyAirResponse2Flight crazyAirResponse2Flight;
 
     @Override
     public Stream<Flight> search(SearchCriteria search) {
-        return crazyAirClient.getFlights(searchCriteriaConverter.toDTO(search)).stream()
-                .map(dto -> crazyAirResponse2Flight.fromDTO(dto));
+//        return crazyAirClient.getFlights(searchCriteriaConverter.toMap(search)).stream()
+//                .map(dto -> crazyAirResponse2Flight.fromDTO(dto));
+        return null;
     }
 
 }
