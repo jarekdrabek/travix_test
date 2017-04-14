@@ -1,29 +1,19 @@
 package drabek.jaroslaw.supplier.crazyair;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Maps;
 import drabek.jaroslaw.SearchCriteria;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static drabek.jaroslaw.common.ConvertionUtils.convertLocalDateToISO8601String;
 
 @Component
 public class SearchCriteria2CrazyAirRequest {
-
-    private static final Logger LOG = LoggerFactory.getLogger(SearchCriteria2CrazyAirRequest.class);
-
-    private ObjectMapper objectMapper = new Jackson2ObjectMapperBuilder().featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS).build();
 
     public MultiValueMap<String,String> toMap(SearchCriteria searchCriteria){
         Map<String, List<String>> mapToReturn = Maps.newHashMap();
@@ -35,13 +25,4 @@ public class SearchCriteria2CrazyAirRequest {
         return CollectionUtils.toMultiValueMap(mapToReturn);
     }
 
-    private String convertLocalDateToISO8601String(LocalDate value) {
-        try {
-            return objectMapper.writeValueAsString(value);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            LOG.error("Error while serializing object", e);
-            return "Unconvertable value";
-        }
-    }
 }
