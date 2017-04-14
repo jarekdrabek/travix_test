@@ -24,7 +24,7 @@ public class CrazyAirSupplierSearch implements FlightSupplierSearch {
 
     @Override
     public Stream<Flight> search(SearchCriteria search) {
-        return crazyAirClient.getFlights(searchCriteriaConverter.toMap(search)).stream().map(dto -> crazyAirResponse2Flight.fromDTO(dto));
+        return crazyAirClient.getFlights(searchCriteriaConverter.toMap(search)).map(dto -> crazyAirResponse2Flight.fromDTO(dto));
     }
 
 }
