@@ -7,7 +7,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.Arrays.asList;
 
@@ -27,7 +26,6 @@ public class CrazyAirClient {
                 .build().encode().toUri();
 
         return asList(restTemplate.getForObject(uri, CrazyAirResponseDTO[].class));
-//        return asList(restTemplate.exchange(uri, CrazyAirResponseDTO[].class));
     }
 
 }
