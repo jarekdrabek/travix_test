@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import drabek.jaroslaw.Application;
 import drabek.jaroslaw.Flight;
-import drabek.jaroslaw.FlightBuilder;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +23,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static drabek.jaroslaw.FlightBuilder.flight;
 import static drabek.jaroslaw.SearchCriteriaBuilder.lookingForFlight;

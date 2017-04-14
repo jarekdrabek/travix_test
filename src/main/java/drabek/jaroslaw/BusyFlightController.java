@@ -1,6 +1,7 @@
 package drabek.jaroslaw;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +21,13 @@ public class BusyFlightController {
 
     @RequestMapping(value = "/v1/flight", method = GET)
     public List<Flight> search(
-            @RequestParam("origin") String origin,
-            @RequestParam("destination") String destination,
-            @RequestParam("departureDate") LocalDate departureDate,
-            @RequestParam("returnDate") LocalDate returnDate,
-            @RequestParam("numberOfPassengers") int numberOfPassengers) {
-        return busyFlightService.search(
+            @RequestParam(value = "origin", required = false) String origin,
+            @RequestParam(value = "destination", required = false) String destination,
+            @RequestParam(value = "departureDate", required = false) LocalDate departureDate,
+            @RequestParam(value = "returnDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate returnDate,
+            @RequestParam(value = "numberOfPassengers", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Integer numberOfPassengers
+    ) {
+        List<Flight> results = busyFlightService.search(
                 lookingForFlight()
                         .from(origin)
                         .to(destination)
@@ -34,6 +36,7 @@ public class BusyFlightController {
                         .count(numberOfPassengers)
                         .create()
         ).collect(Collectors.toList());
+        return results;
     }
 
 }

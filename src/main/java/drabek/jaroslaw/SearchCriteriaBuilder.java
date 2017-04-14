@@ -15,27 +15,27 @@ public class SearchCriteriaBuilder {
     }
 
     public SearchCriteriaBuilder from(String origin) {
-        this.origin = Optional.of(origin);
+        this.origin = Optional.ofNullable(origin);
         return this;
     }
 
     public SearchCriteriaBuilder to(String destination) {
-        this.destination = Optional.of(destination);
+        this.destination = Optional.ofNullable(destination);
         return this;
     }
 
     public SearchCriteriaBuilder on(LocalDate departureDate) {
-        this.departureDate = Optional.of(departureDate);
+        this.departureDate = Optional.ofNullable(departureDate);
         return this;
     }
 
     public SearchCriteriaBuilder back(LocalDate returnDateDate) {
-        this.returnDateDate = Optional.of(returnDateDate);
+        this.returnDateDate = Optional.ofNullable(returnDateDate);
         return this;
     }
 
-    public SearchCriteriaBuilder count(int numberOfPassangers) {
-        this.numberOfPassangers = numberOfPassangers;
+    public SearchCriteriaBuilder count(Integer numberOfPassangers) {
+        this.numberOfPassangers = Optional.ofNullable(numberOfPassangers).orElse(1);
         return this;
     }
 
