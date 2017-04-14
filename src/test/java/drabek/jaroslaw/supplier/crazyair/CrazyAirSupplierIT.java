@@ -81,7 +81,7 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
                         )
                 ), MediaType.APPLICATION_JSON));
         //when
-        Stream<Flight> search = crazyAirSupplierSearch.search(
+        List<Flight> results = crazyAirSupplierSearch.search(
                 lookingForFlight()
                     .from("KRK")
                     .to("STD")
@@ -89,8 +89,7 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
                     .back(LocalDate.of(2017,4,6))
                     .count(1)
                     .create()
-        );
-        List<Flight> results = search.collect(Collectors.toList());
+        ).collect(Collectors.toList());
         //then
         Assertions.assertThat(results).containsExactlyInAnyOrder(
                 flight()
@@ -140,13 +139,12 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
                         )
                 ), MediaType.APPLICATION_JSON));
         //when
-        Stream<Flight> search = crazyAirSupplierSearch.search(
+        List<Flight> results = crazyAirSupplierSearch.search(
                 lookingForFlight()
                     .from("KRK")
                     .count(1)
                     .create()
-        );
-        List<Flight> results = search.collect(Collectors.toList());
+        ).collect(Collectors.toList());
         //then
         Assertions.assertThat(results).containsExactlyInAnyOrder(
                 flight()
