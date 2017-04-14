@@ -12,16 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -30,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 public class IntegrationTest extends AbstractJUnit4SpringContextTests {
 
     private MockRestServiceServer mockServer;
@@ -44,17 +42,15 @@ public class IntegrationTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     private RestTemplate restTemplate;
 
-
     @Before
     public void setUp() {
         mockServer = MockRestServiceServer.createServer(restTemplate);
     }
 
-
     @Test
     public void should_return_results_from_crazy_air_supplier() throws Exception {
         //given
-        mockServer.expect(anything())
+        mockServer.expect(requestTo("https://www.crazyflight.com/flights?returnDate=%222017-04-06%22&origin=KRK&destination=STD&numberOfPassengers=1"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(objectMapper.writeValueAsString(
                         Lists.newArrayList(
@@ -78,7 +74,6 @@ public class IntegrationTest extends AbstractJUnit4SpringContextTests {
                                 )
                         )
                 ), MediaType.APPLICATION_JSON));
-
         //when
         mvc.perform(get("/v1/flight?origin=KRK&destination=STD&returnDate=2017-04-06")
                 .accept(MediaType.APPLICATION_JSON))

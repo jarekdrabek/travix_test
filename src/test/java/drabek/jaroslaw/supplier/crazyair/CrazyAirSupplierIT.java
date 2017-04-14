@@ -3,16 +3,15 @@ package drabek.jaroslaw.supplier.crazyair;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
-import drabek.jaroslaw.Application;
 import drabek.jaroslaw.Flight;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -30,9 +29,9 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-
+@SpringBootTest
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = Application.class)
+//@ContextConfiguration(classes = Application.class)
 public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
 
     private MockRestServiceServer mockServer;
@@ -50,6 +49,7 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
     public void setUp() {
         mockServer = MockRestServiceServer.createServer(restTemplate);
     }
+
 
     @Test
     public void request_complete_search_test() throws JsonProcessingException {
@@ -81,31 +81,31 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
         //when
         List<Flight> results = crazyAirSupplierSearch.search(
                 lookingForFlight()
-                    .from("KRK")
-                    .to("STD")
-                    .on(LocalDate.of(2017,4,4))
-                    .back(LocalDate.of(2017,4,6))
-                    .count(1)
-                    .create()
+                        .from("KRK")
+                        .to("STD")
+                        .on(LocalDate.of(2017, 4, 4))
+                        .back(LocalDate.of(2017, 4, 6))
+                        .count(1)
+                        .create()
         ).collect(Collectors.toList());
         //then
         Assertions.assertThat(results).containsExactlyInAnyOrder(
                 flight()
-                    .from("KRK").to("STD")
-                    .forFare(new BigDecimal("500.00"))
-                    .leavingAt(LocalDateTime.of(2017, 4, 4, 9, 15))
-                    .arrivalAt(LocalDateTime.of(2017, 4, 6, 10, 30))
-                    .withAirline("British Airways")
-                    .withSupplier("Crazy Air")
-                    .create(),
+                        .from("KRK").to("STD")
+                        .forFare(new BigDecimal("500.00"))
+                        .leavingAt(LocalDateTime.of(2017, 4, 4, 9, 15))
+                        .arrivalAt(LocalDateTime.of(2017, 4, 6, 10, 30))
+                        .withAirline("British Airways")
+                        .withSupplier("Crazy Air")
+                        .create(),
                 flight()
-                    .from("KRK").to("STD")
-                    .forFare(new BigDecimal("123.45"))
-                    .leavingAt(LocalDateTime.of(2017, 4, 4, 13, 15))
-                    .arrivalAt(LocalDateTime.of(2017, 4, 6, 14, 30))
-                    .withAirline("British Airways")
-                    .withSupplier("Crazy Air")
-                    .create()
+                        .from("KRK").to("STD")
+                        .forFare(new BigDecimal("123.45"))
+                        .leavingAt(LocalDateTime.of(2017, 4, 4, 13, 15))
+                        .arrivalAt(LocalDateTime.of(2017, 4, 6, 14, 30))
+                        .withAirline("British Airways")
+                        .withSupplier("Crazy Air")
+                        .create()
         );
     }
 
@@ -139,28 +139,28 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
         //when
         List<Flight> results = crazyAirSupplierSearch.search(
                 lookingForFlight()
-                    .from("KRK")
-                    .count(1)
-                    .create()
+                        .from("KRK")
+                        .count(1)
+                        .create()
         ).collect(Collectors.toList());
         //then
         Assertions.assertThat(results).containsExactlyInAnyOrder(
                 flight()
-                    .from("KRK").to("NYC")
-                    .forFare(new BigDecimal("500.00"))
-                    .leavingAt(LocalDateTime.of(2017, 4, 4, 9, 15))
-                    .arrivalAt(LocalDateTime.of(2017, 5, 6, 10, 30))
-                    .withAirline("PL LOT")
-                    .withSupplier("Crazy Air")
-                    .create(),
+                        .from("KRK").to("NYC")
+                        .forFare(new BigDecimal("500.00"))
+                        .leavingAt(LocalDateTime.of(2017, 4, 4, 9, 15))
+                        .arrivalAt(LocalDateTime.of(2017, 5, 6, 10, 30))
+                        .withAirline("PL LOT")
+                        .withSupplier("Crazy Air")
+                        .create(),
                 flight()
-                    .from("KRK").to("STD")
-                    .forFare(new BigDecimal("123.45"))
-                    .leavingAt(LocalDateTime.of(2017, 4, 7, 13, 15))
-                    .arrivalAt(LocalDateTime.of(2017, 4, 21, 14, 30))
-                    .withAirline("British Airways")
-                    .withSupplier("Crazy Air")
-                    .create()
+                        .from("KRK").to("STD")
+                        .forFare(new BigDecimal("123.45"))
+                        .leavingAt(LocalDateTime.of(2017, 4, 7, 13, 15))
+                        .arrivalAt(LocalDateTime.of(2017, 4, 21, 14, 30))
+                        .withAirline("British Airways")
+                        .withSupplier("Crazy Air")
+                        .create()
         );
     }
 

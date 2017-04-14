@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static drabek.jaroslaw.SearchCriteriaBuilder.lookingForFlight;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -27,7 +28,7 @@ public class BusyFlightController {
             @RequestParam(value = "returnDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate returnDate,
             @RequestParam(value = "numberOfPassengers", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Integer numberOfPassengers
     ) {
-        List<Flight> results = busyFlightService.search(
+        Stream<Flight> search = busyFlightService.search(
                 lookingForFlight()
                         .from(origin)
                         .to(destination)
@@ -35,7 +36,8 @@ public class BusyFlightController {
                         .back(returnDate)
                         .count(numberOfPassengers)
                         .create()
-        ).collect(Collectors.toList());
+        );
+        List<Flight> results = search.collect(Collectors.toList());
         return results;
     }
 
