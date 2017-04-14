@@ -54,7 +54,7 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
-    public void request_complete_search_specified_search() throws JsonProcessingException {
+    public void request_complete_search_test() throws JsonProcessingException {
         //given
         mockServer.expect(requestTo("https://www.crazyflight.com/flights?returnDate=%222017-04-06%22&origin=KRK&destination=STD&numberOfPassengers=1&departureDate=%222017-04-04%22"))
                 .andExpect(method(HttpMethod.GET))
@@ -106,6 +106,62 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
                     .forFare(new BigDecimal("123.45"))
                     .leavingAt(LocalDateTime.of(2017, 4, 4, 13, 15))
                     .arrivalAt(LocalDateTime.of(2017, 4, 6, 14, 30))
+                    .withAirline("British Airways")
+                    .withSupplier("Crazy Air")
+                    .create()
+        );
+    }
+
+    @Test
+    public void request_partial_search_test() throws JsonProcessingException {
+        //given
+        mockServer.expect(requestTo("https://www.crazyflight.com/flights?origin=KRK&numberOfPassengers=1"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess(objectMapper.writeValueAsString(
+                        Lists.newArrayList(
+                                new CrazyAirResponseDTO(
+                                        "British Airways",
+                                        "123.45",
+                                        "E",
+                                        "KRK",
+                                        "STD",
+                                        LocalDateTime.of(2017, 4, 7, 13, 15),
+                                        LocalDateTime.of(2017, 4, 21, 14, 30)
+                                ),
+                                new CrazyAirResponseDTO(
+                                        "PL LOT",
+                                        "500.00",
+                                        "E",
+                                        "KRK",
+                                        "NYC",
+                                        LocalDateTime.of(2017, 4, 4, 9, 15),
+                                        LocalDateTime.of(2017, 5, 6, 10, 30)
+                                )
+                        )
+                ), MediaType.APPLICATION_JSON));
+        //when
+        Stream<Flight> search = crazyAirSupplierSearch.search(
+                lookingForFlight()
+                    .from("KRK")
+                    .count(1)
+                    .create()
+        );
+        List<Flight> results = search.collect(Collectors.toList());
+        //then
+        Assertions.assertThat(results).containsExactlyInAnyOrder(
+                flight()
+                    .from("KRK").to("NYC")
+                    .forFare(new BigDecimal("500.00"))
+                    .leavingAt(LocalDateTime.of(2017, 4, 4, 9, 15))
+                    .arrivalAt(LocalDateTime.of(2017, 5, 6, 10, 30))
+                    .withAirline("PL LOT")
+                    .withSupplier("Crazy Air")
+                    .create(),
+                flight()
+                    .from("KRK").to("STD")
+                    .forFare(new BigDecimal("123.45"))
+                    .leavingAt(LocalDateTime.of(2017, 4, 7, 13, 15))
+                    .arrivalAt(LocalDateTime.of(2017, 4, 21, 14, 30))
                     .withAirline("British Airways")
                     .withSupplier("Crazy Air")
                     .create()
