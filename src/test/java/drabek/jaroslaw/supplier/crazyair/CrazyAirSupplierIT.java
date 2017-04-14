@@ -50,7 +50,7 @@ public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
-    public void request_test() throws JsonProcessingException {
+    public void request_completely_specified_search() throws JsonProcessingException {
         //given
         mockServer.expect(requestTo("https://www.crazyflight.com/flights?returnDate=%222017-04-11%22&origin=KRK&destination=STD&numberOfPassengers=2&departureDate=%222017-04-04%22"))
                 .andExpect(method(HttpMethod.GET))

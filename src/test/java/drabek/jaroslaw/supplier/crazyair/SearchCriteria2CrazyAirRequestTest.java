@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SearchCriteria2MultiValueMapTest {
+public class SearchCriteria2CrazyAirRequestTest {
 
     @Test
     public void should_convert_complete_search_criteria(){
@@ -33,7 +33,7 @@ public class SearchCriteria2MultiValueMapTest {
         expectedMap.put("returnDate",Lists.newArrayList("\"2017-04-15\""));
         expectedMap.put("numberOfPassengers",Lists.newArrayList("1"));
         //when
-        MultiValueMap<String, String> converted = new SearchCriteria2MultiValueMap().toMap(toBeConverted);
+        MultiValueMap<String, String> converted = new SearchCriteria2CrazyAirRequest().toMap(toBeConverted);
         //then
         assertThat(converted).isEqualTo(CollectionUtils.toMultiValueMap(expectedMap));
     }
@@ -53,7 +53,7 @@ public class SearchCriteria2MultiValueMapTest {
         expectedMap.put("destination",Lists.newArrayList("STD"));
         expectedMap.put("numberOfPassengers",Lists.newArrayList("1"));
         //when
-        MultiValueMap<String, String> converted = new SearchCriteria2MultiValueMap().toMap(toBeConverted);
+        MultiValueMap<String, String> converted = new SearchCriteria2CrazyAirRequest().toMap(toBeConverted);
         //then
         assertThat(converted).isEqualTo(CollectionUtils.toMultiValueMap(expectedMap));
     }

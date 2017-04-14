@@ -17,7 +17,7 @@ public class CrazyAirSupplierSearch implements FlightSupplierSearch {
     private CrazyAirClient crazyAirClient;
 
     @Autowired
-    private SearchCriteria2MultiValueMap searchCriteriaConverter;
+    private SearchCriteria2CrazyAirRequest searchCriteriaConverter;
 
     @Autowired
     private CrazyAirResponse2Flight crazyAirResponse2Flight;

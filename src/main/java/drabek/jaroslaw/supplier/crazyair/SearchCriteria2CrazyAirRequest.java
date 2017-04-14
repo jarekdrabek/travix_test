@@ -19,9 +19,9 @@ import java.util.Map;
 import static com.google.common.collect.Lists.newArrayList;
 
 @Component
-public class SearchCriteria2MultiValueMap {
+public class SearchCriteria2CrazyAirRequest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SearchCriteria2MultiValueMap.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SearchCriteria2CrazyAirRequest.class);
 
     private ObjectMapper objectMapper = new Jackson2ObjectMapperBuilder().featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS).build();
 
