@@ -5,19 +5,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ConvertionUtils {
 
-
     public static String convertLocalDateToISO8601String(LocalDate value) {
-        try {
-            return new Jackson2ObjectMapperBuilder()
-                    .featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-                    .build()
-                    .writeValueAsString(value);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return "Unconvertable value";
-        }
+        return value.format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 }

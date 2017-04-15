@@ -29,8 +29,8 @@ public class SearchCriteria2CrazyAirRequestTest {
         HashMap<String, List<String>> expectedMap = Maps.newHashMap();
         expectedMap.put("origin",Lists.newArrayList("KRK"));
         expectedMap.put("destination",Lists.newArrayList("STD"));
-        expectedMap.put("departureDate",Lists.newArrayList("\"2017-04-11\""));
-        expectedMap.put("returnDate",Lists.newArrayList("\"2017-04-15\""));
+        expectedMap.put("departureDate",Lists.newArrayList("2017-04-11"));
+        expectedMap.put("returnDate",Lists.newArrayList("2017-04-15"));
         expectedMap.put("numberOfPassengers",Lists.newArrayList("1"));
         //when
         MultiValueMap<String, String> converted = new SearchCriteria2CrazyAirRequest().toMap(toBeConverted);
