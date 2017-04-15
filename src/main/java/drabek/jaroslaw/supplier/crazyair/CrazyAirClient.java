@@ -1,5 +1,6 @@
 package drabek.jaroslaw.supplier.crazyair;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -12,14 +13,11 @@ import java.util.stream.Stream;
 @Service
 public class CrazyAirClient {
 
-    private RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Value("${crazy.air.url}")
     private String crazyAirURL;
-
-    public CrazyAirClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public Stream<CrazyAirResponseDTO> getFlights(MultiValueMap<String,String> requestParameters) {
         URI uri = UriComponentsBuilder
