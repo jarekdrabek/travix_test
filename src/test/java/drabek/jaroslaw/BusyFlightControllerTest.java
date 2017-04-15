@@ -16,7 +16,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,6 +25,7 @@ import static drabek.jaroslaw.FlightBuilder.flight;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -61,7 +61,7 @@ public class BusyFlightControllerTest extends AbstractJUnit4SpringContextTests {
                         .create())
         ).when(busyFlightService).search(any());
         //when&then
-        mvc.perform(MockMvcRequestBuilders.get("/v1/flight?origin=KRK&destination=STD&returnDate=2017-04-06").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(get("/v1/flight?origin=KRK&destination=STD&returnDate=2017-04-06").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo(
                         "[{" +
