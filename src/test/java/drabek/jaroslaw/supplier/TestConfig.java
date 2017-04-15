@@ -1,17 +1,11 @@
 package drabek.jaroslaw.supplier;
 
 import drabek.jaroslaw.Application;
-import drabek.jaroslaw.BusyFlightService;
-import org.mockito.Mockito;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class TestConfig {
+@EnableAutoConfiguration
+public class TestConfig extends Application{
 
-    @Bean
-    public BusyFlightService getBusyFlightService(){
-        return Mockito.mock(BusyFlightService.class);
-    }
 }
