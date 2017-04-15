@@ -31,8 +31,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-//@ContextConfiguration(classes = Application.class)
-public class CrazyAirSupplierIT extends AbstractJUnit4SpringContextTests {
+public class CrazyAirSupplierE2E extends AbstractJUnit4SpringContextTests {
 
     private MockRestServiceServer mockServer;
 

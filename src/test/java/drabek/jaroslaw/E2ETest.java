@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-public class IntegrationTest extends AbstractJUnit4SpringContextTests {
+public class E2ETest extends AbstractJUnit4SpringContextTests {
 
     private MockRestServiceServer mockServer;
 
