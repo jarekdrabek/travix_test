@@ -59,4 +59,18 @@ public class CrazyAirResponseDTO {
     public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("CrazyAirResponseDTO{");
+        sb.append("airline='").append(airline).append('\'');
+        sb.append(", price='").append(price).append('\'');
+        sb.append(", cabinclass='").append(cabinclass).append('\'');
+        sb.append(", departureAirportCode='").append(departureAirportCode).append('\'');
+        sb.append(", destinationAirportCode='").append(destinationAirportCode).append('\'');
+        sb.append(", departureDate=").append(departureDate);
+        sb.append(", arrivalDate=").append(arrivalDate);
+        sb.append('}');
+        return sb.toString();
+    }
 }

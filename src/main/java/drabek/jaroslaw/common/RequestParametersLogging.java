@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Aspect
 @Component
 public class RequestParametersLogging {
@@ -14,9 +16,10 @@ public class RequestParametersLogging {
     private static final Logger LOG = LoggerFactory.getLogger(RequestParametersLogging.class);
 
     @Around("@annotation(externalSupplier)")
-    public Object logAround(ProceedingJoinPoint joinPoint, ExternalSupplier externalSupplier) throws Throwable {
-        LOG.info("Querying external resources with parameters: {}",joinPoint.getArgs());
-        Object returnObject = joinPoint.proceed();
-        return returnObject;
+    public List<Object> logAround(ProceedingJoinPoint joinPoint, ExternalSupplier externalSupplier) throws Throwable {
+        LOG.info("Querying external resource ({}) with parameters: {}", joinPoint.getSignature().getDeclaringType(), joinPoint.getArgs());
+        List<Object> response = (List<Object>)joinPoint.proceed();
+        LOG.info("External resource returned value: {}",response);
+        return response;
     }
 }

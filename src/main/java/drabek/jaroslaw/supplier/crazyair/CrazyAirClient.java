@@ -9,7 +9,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class CrazyAirClient {
@@ -21,13 +22,13 @@ public class CrazyAirClient {
     private String crazyAirURL;
 
     @ExternalSupplier
-    public Stream<CrazyAirResponseDTO> getFlights(MultiValueMap<String,String> requestParameters) {
+    public List<CrazyAirResponseDTO> getFlights(MultiValueMap<String,String> requestParameters) {
         URI uri = UriComponentsBuilder
                 .fromHttpUrl(crazyAirURL +"/flights")
                 .queryParams(requestParameters)
                 .build().encode().toUri();
 
-        return Stream.of(restTemplate.getForObject(uri, CrazyAirResponseDTO[].class));
+        return Arrays.asList(restTemplate.getForObject(uri, CrazyAirResponseDTO[].class));
     }
 
 }
