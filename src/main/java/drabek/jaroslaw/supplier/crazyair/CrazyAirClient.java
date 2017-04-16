@@ -1,5 +1,6 @@
 package drabek.jaroslaw.supplier.crazyair;
 
+import drabek.jaroslaw.common.ExternalSupplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class CrazyAirClient {
     @Value("${crazy.air.url}")
     private String crazyAirURL;
 
+    @ExternalSupplier
     public Stream<CrazyAirResponseDTO> getFlights(MultiValueMap<String,String> requestParameters) {
         URI uri = UriComponentsBuilder
                 .fromHttpUrl(crazyAirURL +"/flights")

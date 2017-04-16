@@ -13,10 +13,10 @@ public class RequestParametersLogging {
 
     private static final Logger LOG = LoggerFactory.getLogger(RequestParametersLogging.class);
 
-    @Around("execution(* drabek.jaroslaw.supplier.crazyair.CrazyAirClient.getFlights(..))")
-    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("@annotation(externalSupplier)")
+    public Object logAround(ProceedingJoinPoint joinPoint, ExternalSupplier externalSupplier) throws Throwable {
         LOG.info("Querying external resources with parameters: {}",joinPoint.getArgs());
-        Object returnObject = joinPoint.proceed();//continue on the intercepted method
+        Object returnObject = joinPoint.proceed();
         return returnObject;
     }
 }
