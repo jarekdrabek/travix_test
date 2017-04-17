@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static drabek.jaroslaw.common.ConvertionUtils.convertLocalDateToISO8601String;
+import static drabek.jaroslaw.common.ISO8601Utils.convertLocalDateToISO8601String;
 
 @Component
 public class SearchCriteria2CrazyAirRequest {
