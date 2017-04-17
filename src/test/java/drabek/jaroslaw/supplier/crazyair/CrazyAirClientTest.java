@@ -44,7 +44,7 @@ public class CrazyAirClientTest extends AbstractJUnit4SpringContextTests {
     @Test(expected = SupplierErrorException.class)
     public void should_throw_internal_supplier_exception_when_server_error(){
         //given
-        mockServer.expect(requestTo("https://www.crazyflight.com/flights?numberOfPassengers=1"))
+        mockServer.expect(requestTo("https://www.crazyflight-test.com/flights?numberOfPassengers=1"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withServerError());
         //when&then

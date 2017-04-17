@@ -52,7 +52,7 @@ public class E2ETest extends AbstractJUnit4SpringContextTests {
     @Test
     public void should_return_results_from_crazy_air_supplier() throws Exception {
         //given
-        mockServer.expect(requestTo("https://www.crazyflight.com/flights?returnDate=2017-04-06&origin=KRK&destination=STD&numberOfPassengers=1"))
+        mockServer.expect(requestTo("https://www.crazyflight-test.com/flights?returnDate=2017-04-06&origin=KRK&destination=STD&numberOfPassengers=1"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(objectMapper.writeValueAsString(
                         Lists.newArrayList(
