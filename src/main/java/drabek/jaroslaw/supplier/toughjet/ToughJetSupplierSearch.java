@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 public class ToughJetSupplierSearch implements FlightSupplierSearch {
 
     @Autowired
-    private ToughJetSupplier toughJetSupplier;
+    private ToughJetClient toughJetClient;
 
     @Override
     public Stream<Flight> search(SearchCriteria search) {
