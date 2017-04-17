@@ -3,6 +3,7 @@ package drabek.jaroslaw.supplier.crazyair;
 import drabek.jaroslaw.Flight;
 import drabek.jaroslaw.SearchCriteria;
 import drabek.jaroslaw.supplier.FlightSupplierSearch;
+import drabek.jaroslaw.supplier.SupplierErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,11 @@ public class CrazyAirSupplierSearch implements FlightSupplierSearch {
         Stream<Flight> results = null;
         try {
             results = crazyAirClient.getFlights(searchCriteriaConverter.toMap(search)).stream().map(dto -> crazyAirResponse2Flight.fromDTO(dto));
-        } catch (Exception e) {
+        } catch (SupplierErrorException e) {
             LOG.error("CrazyAir Supplier 500 Error. Returning empty results");
+            return Stream.empty();
+        } catch (Exception e){
+            LOG.error("CrazyAir Supplier Unknown error. Returning empty results");
             return Stream.empty();
         }
         return results;

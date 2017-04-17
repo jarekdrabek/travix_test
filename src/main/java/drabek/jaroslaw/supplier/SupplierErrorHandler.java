@@ -16,7 +16,7 @@ public class SupplierErrorHandler extends DefaultResponseErrorHandler {
             case SERVER_ERROR:
                 throw new SupplierErrorException(statusCode, response.getStatusText());
             default:
-                throw new RestClientException("Unknown status code [" + statusCode + "]");
+                throw new RestClientException("Unknown status code [" + statusCode + ":"+response.getStatusText()+"]");
         }
     }
 }
