@@ -3,6 +3,7 @@ package drabek.jaroslaw;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import drabek.jaroslaw.supplier.crazyair.CrazyAirResponseDTO;
+import drabek.jaroslaw.supplier.toughjet.ToughJetResponseDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +51,7 @@ public class E2ETest extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
-    public void should_return_results_from_crazy_air_supplier() throws Exception {
+    public void should_return_results_from_crazy_air_supplier_and_tough_jet_supplier() throws Exception {
         //given
         mockServer.expect(requestTo("https://www.crazyflight-test.com/flights?returnDate=2017-04-06&origin=KRK&destination=STD&numberOfPassengers=1"))
                 .andExpect(method(HttpMethod.GET))
@@ -76,6 +77,39 @@ public class E2ETest extends AbstractJUnit4SpringContextTests {
                                 )
                         )
                 ), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://www.taughjet-test.com/flights?numberOfAdults=1&returnMonth=4&from=KRK&to=STD&returnYear=2017&returnDay=6"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess(objectMapper.writeValueAsString(
+                        Lists.newArrayList(
+                                new ToughJetResponseDTO(
+                                        "British Airways",
+                                        "200",
+                                        "100",
+                                        "20",
+                                        "KRK",
+                                        "STD",
+                                        12,
+                                        4,
+                                        2017,
+                                        13,
+                                        5,
+                                        2017
+                                ),
+                                new ToughJetResponseDTO(
+                                        "British Airways",
+                                        "123.45",
+                                        "56.00",
+                                        "60",
+                                        "KRK",
+                                        "STD",
+                                        12,
+                                        4,
+                                        2017,
+                                        1,
+                                        12,
+                                        2017
+                                )                        )
+                ), MediaType.APPLICATION_JSON));
         //when
         mvc.perform(get("/v1/flight?origin=KRK&destination=STD&returnDate=2017-04-06")
                 .accept(MediaType.APPLICATION_JSON))
@@ -98,7 +132,23 @@ public class E2ETest extends AbstractJUnit4SpringContextTests {
                                     "\"destinationAirport\":\"STD\"," +
                                     "\"departureDate\":\"2017-04-04T09:15:00\"," +
                                     "\"arrivalDate\":\"2017-04-06T10:30:00\"" +
-                                "}" +
+                                "},{" +
+                                    "\"airline\":\"British Airways\"," +
+                                    "\"supplier\":\"Tough Jet\"," +
+                                    "\"fare\":240," +
+                                    "\"departureAirport\":\"KRK\"," +
+                                    "\"destinationAirport\":\"STD\"," +
+                                    "\"departureDate\":\"2017-04-12T12:00:00\"," +
+                                    "\"arrivalDate\":\"2017-05-13T12:00:00\"" +
+                                "},{" +
+                                    "\"airline\":\"British Airways\"," +
+                                    "\"supplier\":\"Tough Jet\"," +
+                                    "\"fare\":71.78," +
+                                    "\"departureAirport\":\"KRK\"," +
+                                    "\"destinationAirport\":\"STD\"," +
+                                    "\"departureDate\":\"2017-04-12T12:00:00\"," +
+                                    "\"arrivalDate\":\"2017-12-01T12:00:00\"" +
+                                "}"+
                         "]")));
 
     }

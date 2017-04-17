@@ -18,8 +18,8 @@ public class BusyFlightService {
 
     public Stream<Flight> search(SearchCriteria searchCriteria){
         return Stream.concat(
-                toughJetSupplierSearch.search(searchCriteria),
-                crazyAirSupplierSearch.search(searchCriteria)
+                crazyAirSupplierSearch.search(searchCriteria),
+                toughJetSupplierSearch.search(searchCriteria)
         );
     }
 }

@@ -1,6 +1,6 @@
 package drabek.jaroslaw.supplier.toughjet;
 
-public class TaughJetResponseDTO {
+public class ToughJetResponseDTO {
     private String carrier;
     private String basePrice;
     private String tax;
@@ -14,7 +14,22 @@ public class TaughJetResponseDTO {
     private int returnMonth;
     private int returnYear;
 
-    public TaughJetResponseDTO() {
+    public ToughJetResponseDTO() {
+    }
+
+    public ToughJetResponseDTO(String carrier, String basePrice, String tax, String discount, String departureAirportName, String arrivalAirportName, int departureDay, int departureMonth, int departureYear, int returnDay, int returnMonth, int returnYear) {
+        this.carrier = carrier;
+        this.basePrice = basePrice;
+        this.tax = tax;
+        this.discount = discount;
+        this.departureAirportName = departureAirportName;
+        this.arrivalAirportName = arrivalAirportName;
+        this.departureDay = departureDay;
+        this.departureMonth = departureMonth;
+        this.departureYear = departureYear;
+        this.returnDay = returnDay;
+        this.returnMonth = returnMonth;
+        this.returnYear = returnYear;
     }
 
     public String getCarrier() {

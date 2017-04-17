@@ -22,13 +22,13 @@ public class ToughJetClient {
     private String taughJetURL;
 
     @ExternalService
-    public List<TaughJetResponseDTO> getFlights(MultiValueMap<String,String> requestParameters) {
+    public List<ToughJetResponseDTO> getFlights(MultiValueMap<String,String> requestParameters) {
         URI uri = UriComponentsBuilder
                 .fromHttpUrl(taughJetURL +"/flights")
                 .queryParams(requestParameters)
                 .build().encode().toUri();
 
-        return Arrays.asList(restTemplate.getForObject(uri, TaughJetResponseDTO[].class));
+        return Arrays.asList(restTemplate.getForObject(uri, ToughJetResponseDTO[].class));
     }
 
 

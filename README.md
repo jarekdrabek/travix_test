@@ -13,5 +13,8 @@ How to configure it:
     ```
     curl localhost:8080/v1/flight?destination=KRK
     ```
-    
+Disclaimer:
+   * ToughJet Supplier Response doesn't have Time of the flight. I assumed simpliest - the time is the moon of the day.
+   * Since I was running out of time, I didn't write all unit tests I had in mind. 
+    It would be the same as for CrazyJet supplier. 
 

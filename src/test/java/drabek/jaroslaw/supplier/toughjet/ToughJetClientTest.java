@@ -48,7 +48,7 @@ public class ToughJetClientTest {
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withServerError());
         //when&then
-        List<TaughJetResponseDTO> flights = toughJetClient.getFlights(searchCriteriaConverter.toMap(lookingForFlight().create()));
+        toughJetClient.getFlights(searchCriteriaConverter.toMap(lookingForFlight().create()));
     }
 
 
