@@ -15,6 +15,6 @@ How to configure it:
     ```
 Disclaimer:
    * ToughJet Supplier Response doesn't have Time of the flight. I assumed simpliest - the time is the moon of the day.
-   * Since I was running out of time, I didn't write all unit tests I had in mind. 
-    It would be the same as for CrazyJet supplier. 
+   * It took me several hours more than 2-3 to complete the task. Even though I didn't write all unit tests I had in mind. 
+   
 
