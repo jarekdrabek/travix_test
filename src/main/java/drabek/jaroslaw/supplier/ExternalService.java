@@ -1,4 +1,4 @@
-package drabek.jaroslaw.common;
+package drabek.jaroslaw.supplier;
 
 
 import java.lang.annotation.ElementType;
@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExternalSupplier {
+public @interface ExternalService {
 }
 
